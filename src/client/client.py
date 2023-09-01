@@ -73,7 +73,7 @@ def main():
             argIndex = sys.argv.index("-path") + 1
             path = str(sys.argv[argIndex])
         else:
-            path = ".\images"
+            path = "images"
 
         if("-minutes" in sys.argv):
             argIndex = sys.argv.index("-minutes") + 1
@@ -82,7 +82,7 @@ def main():
             minutes = 60
     else:
         camPort = findCamPort()
-        path = ".\images"
+        path = "images"
         minutes = 60
 
     print("[info] Taking images at " + str(minutes) + " minute intervals. Press ctrl + C to stop.")

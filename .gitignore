@@ -1,3 +1,7 @@
+# Client ignores
 src/client/venv
 src/client/images
 *.png
+
+# Server ignores
+src/server/venv
