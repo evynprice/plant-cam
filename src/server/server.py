@@ -21,7 +21,6 @@ def allowedFile(filename):
 
 def fetchImage():
     imgDir = "./static"
-    #imgList = os.listdir(imgDir)
     imgPath = os.path.join(imgDir, "proxy-image.jpg")
     return imgPath
 
