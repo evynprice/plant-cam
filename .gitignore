@@ -1,3 +1,7 @@
+# MacOS
+.DS_Store
+*/.DS_Store
+
 # Client ignores
 src/client/venv
 src/client/images
@@ -5,3 +9,5 @@ src/client/images
 
 # Server ignores
 src/server/venv
+src/server/static/uploads/*
+src/server/static/videos/*

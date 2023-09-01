@@ -24,14 +24,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/images">Images</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/videos">Videos</a>
+                <li class="nav-item active">
+                  <a class="nav-link" href="/videos">Videos<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/upload">Upload</a>
@@ -39,6 +39,16 @@
               </ul>
             </div>
           </nav>
+          <div class="container" id="bodyContainer">
+            <div class="list-group">
+              <a class="list-group-item list-group-item-action active">
+                Videos: {{parent}}
+              </a>
+              {% for dir in dirs %}
+              <a href="/videos/{{dir}}" class="list-group-item list-group-item-action">{{dir}}</a>
+              {% endfor %}
+            </div>
+          </div>
         {% endblock %}
 
         {% block scripts %}

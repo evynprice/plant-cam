@@ -27,11 +27,11 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="/images">Images<span class="sr-only">(current)</span></a>
-                </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/videos">Videos</a>
+                  <a class="nav-link" href="/images">Images</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="/videos">Videos<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/upload">Upload</a>
@@ -44,8 +44,8 @@
               <a class="list-group-item list-group-item-action active">
                 Past Images: {{parent}}
               </a>
-              {% for dir in dirs %}
-              <a href="/images/{{dir}}" class="list-group-item list-group-item-action">{{dir}}</a>
+              {% for video in videos %}
+              <a href="/static/videos{{parent}}/{{video}}" class="list-group-item list-group-item-action">{{video}}</a>
               {% endfor %}
             </div>
           </div>

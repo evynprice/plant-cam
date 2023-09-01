@@ -10,6 +10,7 @@ import sys
 import cv2
 import time
 from datetime import datetime
+import requests
 
 # This function will search camera ports until a valid port is found, returning as an int.
 def findCamPort():
@@ -47,19 +48,33 @@ def takePicture(camPort, path):
     result, image = cam.read()
 
     if result:
-        now = datetime.now().strftime("%Y%m%d:%H%M%S")
+        now = datetime.now().strftime("%m-%d-%Y %H:%M")
 
         isExist = os.path.exists(path)
         if not isExist:
             os.makedirs(path)
             print("[debug][" + str(now) + "] Created path: " + path)
 
-        filename = path + "/" + now + ".png"
+        imgName = str(now) + ".png"
+        imgPath = os.path.join(path, imgName)
 
-        print("[info][" + str(now) + "] Wrote picture: " + filename)
-        cv2.imwrite(filename, image)
+        cv2.imwrite(imgPath, image)
+        print("[info][" + str(now) + "] Saved image: " + imgPath)
     else:
         print("[debug][" + str(now) + "] No image detected.")
+
+    return imgPath
+
+def uploadPicture(url, image):
+    now = datetime.now().strftime("%Y%m%d:%H%M%S")
+    imgFile = open(image, "rb")
+    res = requests.post(url, files = {"file": imgFile})
+    if res.ok:
+        print("[info][" + str(now) + "] Image uploaded successfully: " + str(image))
+    else:
+        print("[error][" + str(now) + "] Failed to upload image " + str(image))
+    res.close()
+    imgFile.close()
 
 def main():
     if(len(sys.argv) > 0):
@@ -80,14 +95,24 @@ def main():
             minutes = float(sys.argv[argIndex])
         else:
             minutes = 60
+        
+        if("-server" in sys.argv):
+            argIndex = sys.argv.index("-server") + 1
+            upload = str(sys.argv[argIndex])
+        else:
+            upload = ""
+        
     else:
         camPort = findCamPort()
         path = "images"
         minutes = 60
+        upload = ""
 
     print("[info] Taking images at " + str(minutes) + " minute intervals. Press ctrl + C to stop.")
     while(True):
-        takePicture(camPort, path)
+        imgPath = takePicture(camPort, path)
+        if not (upload == ''):
+            uploadPicture(upload, imgPath)
         time.sleep(minutes * 60)
 
 if __name__== "__main__":
