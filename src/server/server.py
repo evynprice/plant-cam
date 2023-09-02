@@ -146,6 +146,8 @@ def imagessubdir_page(dir1, dir2):
             file = str(file).split('/')
             file = file[len(file)-1]
             files.append(file)
+        if(len(files)) > 0:
+            files = sorted(files)
         return render_template('images/images.html', parent=parent, imgs=files)
     else:
         for file in dirContents:
@@ -153,6 +155,8 @@ def imagessubdir_page(dir1, dir2):
             file = file[3:]
             file = "/".join(file)
             files.append(file)
+        if(len(files)) > 0:
+            files = sorted(files)
         return render_template('images/index.html', parent=parent, dirs=files)
     
 @app.route("/videos")
@@ -185,6 +189,9 @@ def videossubdir_page(dir1, dir2):
             file = str(file).split('/')
             file = file[len(file)-1]
             files.append(file)
+
+        if(len(files)) > 0:
+            files = sorted(files)
         return render_template('videos/videos.html', parent=parent, videos=files)
     else:
         for file in dirContents:
@@ -192,6 +199,8 @@ def videossubdir_page(dir1, dir2):
             file = file[3:]
             file = "/".join(file)
             files.append(file)
+        if(len(files)) > 0:
+            files = sorted(files)
         return render_template('videos/index.html', parent=parent, dirs=files)
     
 
