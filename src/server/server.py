@@ -110,7 +110,11 @@ def index_page():
     imgName = imgPath.split('/')
     imgName = imgName[len(imgName)-1].split('.')
     imgName = imgName[0]
-    return render_template('index/index.html', timestamp=imgName, image=imgPath)
+    currenttime = datetime.now()
+    daysAlive = int((currenttime - START_WEEK).days)
+    weekNum = int(daysAlive / 7)
+    numImages = len(glob.glob('./static/uploads/**/*.png', recursive=True))
+    return render_template('index/index.html', timestamp=imgName, image=imgPath, currentWeek=weekNum, daysAlive=daysAlive, numImages=numImages)
 
 @app.route("/images")
 def images_page():

@@ -5,20 +5,22 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
         {% block styles %}
             <!-- Bootstrap CSS -->
             {{ bootstrap.load_css() }}
         {% endblock %}
 
-        <title>Plant Cam</title>
+        <title>KeanuCam: Images</title>
         {% endblock %}
     </head>
     <body>
         <!-- Your page content -->
         {% block content %}
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/">Plant Camera</a>
+            <img class="navbar-brand" src="/static/logo.png" alt="" width="50" height="50">
+            <a class="navbar-brand" href="/">KeanuCam</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -40,8 +42,9 @@
             </div>
           </nav>
           <div class="container" id="bodyContainer">
+            <br>
             <div class="list-group">
-              <a class="list-group-item list-group-item-action active">
+              <a class="list-group-item list-group-item-success">
                 Past Images: {{parent}}
               </a>
               {% for img in imgs %}
